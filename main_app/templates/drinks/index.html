@@ -22,22 +22,24 @@
 <section class="card-container">
   {% for drink in drinks %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          {% comment %} <img 
-            src="{% static 'images/sk8r-boi-cat.svg' %}" 
-            alt="A skater boy cat"
-          > {% endcomment %}
+      <a href="{% url 'drinks_detail' drink.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            {% comment %} {% comment %} <img 
+              src="{% static 'images/sk8r-boi-cat.svg' %}" 
+              alt="A skater boy cat"
+            > {% endcomment %} 
+          </div>
+          <h2 class="card-title">{{ drink.name }}</h2>
+          {% if drink.name %}
+            {% comment %} <p>A {{ cat.age }} year old {{ cat.breed }}</p> {% endcomment %}
+            <h3>A {{ drink.description }} {{ drink.spirit }} based cocktail.</h3>
+          {% else %}
+          <h1>No Cocktails Yet<h1>
+          {% endif %}
+          <p><small> </small></p>
         </div>
-        <h2 class="card-title">{{ drink.name }}</h2>
-        {% if drink.name %}
-          {% comment %} <p>A {{ cat.age }} year old {{ cat.breed }}</p> {% endcomment %}
-          <h3>A {{ drink.description }} {{ drink.spirit }} based cocktail.</h3>
-        {% else %}
-        <h1>No Cocktails Yet<h1>
-        {% endif %}
-        <p><small> </small></p>
-      </div>
+      <a>
     </div>
   {% endfor %}
 </section>

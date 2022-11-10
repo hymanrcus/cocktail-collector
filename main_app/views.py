@@ -1,25 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Drink
 
-class Drink:
-  def __init__(self, name, description, spirit):
+def __init__(self, name, description, spirit):
     self.name = name
     self.description = description
     self.spirit = spirit
 
-drinks= [
-  Drink('Martini', 'Traditional', 'Gin'),
-  Drink('Daiquiri', 'Fruity', 'Rum'),
-  Drink('Mule', 'Refreshing', 'Vodka'),
-  Drink('Sour', 'Complex', 'Bourbon')
-]
+
 
 # Create your views here.
 def home(request):
-  return HttpResponse('<h1>Welcome to the bar</h1>')
+  return render(request, 'home.html')
 
 def about(request,):
   return render(request, 'about.html')
 
 def drinks_index(request):
+  drinks = Drink.objects.all()
   return render(request, 'drinks/index.html', { 'drinks': drinks })
+
+def drinks_detail(request, drink_id):
+  drink = Drink.objects.get(id=drink_id)
+  return render(request, 'drinks/detail.html', { 'drink': drink })
