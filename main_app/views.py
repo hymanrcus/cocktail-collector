@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 from .models import Drink
 
 def __init__(self, name, description, spirit):
@@ -23,3 +23,7 @@ def drinks_index(request):
 def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
   return render(request, 'drinks/detail.html', { 'drink': drink })
+
+class DrinkCreate(CreateView):
+  model = Drink
+  fields = '__all__'
