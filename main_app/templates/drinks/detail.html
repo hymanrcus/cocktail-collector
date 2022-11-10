@@ -18,8 +18,11 @@
       alt="A skater boy cat"
     > {% endcomment %}
   </div>
-  <h2 class="card-title">{{ drink.name }}</h2>
+    <h2 class="card-title">{{ drink.name }}</h2>
     <h3>A {{ drink.description }} {{ drink.spirit }} based cocktail.</h3>
+    <div class="cat-actions">
+      <a href="{% url 'drinks_update' drink.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'drinks_delete' drink.id %}" class="btn danger">Delete</a>
 </section>
 
 {% endblock %}
