@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Drink
 
 def __init__(self, name, description, spirit):
@@ -27,3 +27,11 @@ def drinks_detail(request, drink_id):
 class DrinkCreate(CreateView):
   model = Drink
   fields = '__all__'
+
+class DrinkUpdate(UpdateView):
+  model = Drink
+  fields = '__all__'
+
+class DrinkDelete(DeleteView):
+  model = Drink
+  success_url = '/drinks/'
