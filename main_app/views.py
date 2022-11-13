@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Drink
+from .forms import PresentationForm
 
 def __init__(self, name, description, spirit):
     self.name = name
@@ -22,7 +23,10 @@ def drinks_index(request):
 
 def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
-  return render(request, 'drinks/detail.html', { 'drink': drink })
+  presentation_form = PresentationForm()
+  return render(request, 'drinks/detail.html', { 
+    'drink': drink, 'presentation_form': presentation_form
+    })
 
 class DrinkCreate(CreateView):
   model = Drink

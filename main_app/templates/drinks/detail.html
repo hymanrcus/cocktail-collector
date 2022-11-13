@@ -24,5 +24,47 @@
       <a href="{% url 'drinks_update' drink.id %}" class="btn warn">Edit</a>
       <a href="{% url 'drinks_delete' drink.id %}" class="btn danger">Delete</a>
 </section>
+<div class="presentations-toy-container">
+  <section class="presentations">
+    <div class="subsection-title">
+      <h2>Presentations</h2>
+      {% comment %} <img 
+        src="{% static 'images/cat-cone.svg' %}" 
+        alt="An ice cream cone cat"
+      />
+      <img 
+        src="{% static 'images/cat-onigiri.svg' %}"
+        alt="A cat as onigiri"
+      />
+      <img 
+        src="{% static 'images/kitty-kabob.svg' %}" 
+        alt="A kabob of kittens"
+      /> {% endcomment %}
+    </div>
+    <h3>Add a Presentation</h3>
+    <form
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ presentation_form.as_p }}
+      <button type="submit" class="btn submit">Add Presentation</button>
+    </form>
+    <h3>Other Presentations</h3>
+    <table>
+      <thead>
+        <tr><th>Color</th><th>Garnish</th></tr>
+      </thead>
+      <tbody>
+        {% for presentation in cat.presentation_set.all %}
+          <tr>
+            <td>{{presentation.color}}</td>
+            <td>{{presentation.get_garnish_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
 
 {% endblock %}
